@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:dark="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Dark" xmlns:light="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Light"
+  xmlns:local="clr-namespace:Button" x:Class="Button.MainPage" >
+   <ContentPage.BindingContext>
+        <local:ButtonModelView/>
+        
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        
+            <ResourceDictionary MergedWith="dark:DarkThemeResources" />
+            <ResourceDictionary MergedWith="light:LightThemeResources"/>
+        
+    </ContentPage.Resources>
+    <StackLayout>
+       <Button x:Name="Button"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                FontSize="{Binding FontSizeValue}"
+                Text="Button" 
+                TextColor="{Binding SelectedTextColour}"
+                BackgroundColor="{Binding SelectedBackgroundcolour}"
+                BorderColor="{Binding SelectedBorderColour}"
+                CornerRadius="{Binding CornRadiusValue,Mode=TwoWay}"
+                BorderWidth="{Binding BorderWidthValue}"
+                />
+
+          
+       
+        <StackLayout Padding="10">
+             
+            <Switch IsToggled="true" Toggled="Switch"  />
+            <Label x:Name="CornRad"
+                   Text="{Binding CornRadiusValue, StringFormat='Corener Radius = {0:F1}'}"
+                   HorizontalTextAlignment="Center" />
+            <Slider 
+                    Minimum="0"
+                    Maximum="50"
+                    Value="{Binding CornRadiusValue}" />
+            
+            <Label x:Name="FontSize"
+                   Text="{Binding FontSizeValue,StringFormat= 'Font Size = {0:F1}'}"
+                   HorizontalTextAlignment="Center" />
+            
+            <Slider x:Name="FontSizeSlider"
+                    Minimum="0"
+                    Maximum="100"
+                    Value="{Binding FontSizeValue}" />
+            
+            <Label x:Name="BorderWidth"
+                   Text="{Binding BorderWidthValue, StringFormat='Border Width = {0:F1}'}"
+                   HorizontalTextAlignment="Center" />
+            
+            <Slider x:Name="BorderWidthSlider"
+                    Minimum="0"
+                    Maximum="10"
+                    Value="{Binding BorderWidthValue}" />
+            
+           <Grid>
+                
+                <Grid.RowDefinitions>
+                    
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                   
+                </Grid.ColumnDefinitions>
+                <Label x:Name="BackGroundColour" Text="Background Colour" Grid.Row="0" Grid.Column="0" />
+                <Picker x:Name="BackGroundColourpicker"  ItemsSource="{Binding Colours}"  SelectedItem="{Binding SelectedBackgroundcolour}" Grid.Row="0" Grid.Column="1"  />
+                
+                <Label x:Name="TextColour" Text="Text Colour" Grid.Row="1" Grid.Column="0" />
+                <Picker x:Name="TextColourpicker" ItemsSource="{Binding Colours} " SelectedItem="{Binding SelectedTextColour}" Grid.Row="1" Grid.Column="1"/> 
+                
+                <Label Text="Border Colour" Grid.Row="2" Grid.Column="0" />
+                <Picker ItemsSource="{Binding Colours}" SelectedItem="{Binding SelectedBorderColour}" Grid.Row="2" Grid.Column="1"/>
+                
+          </Grid>
+            
+        </StackLayout>
+        
+    </StackLayout>
+</ContentPage>
